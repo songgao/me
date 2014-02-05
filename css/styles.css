@@ -1,5 +1,6 @@
 html, body {
     height: 100%;
+    background-color: black;
 }
 
 .row.hidden-xs {
@@ -8,7 +9,7 @@ html, body {
 }
 
 .place-holder {
-    padding-top: 220px;
+    padding-top: 180px;
     display: block;
     z-index: -1;
 }
@@ -25,7 +26,7 @@ html, body {
 }
 
 #lifestream ul {
-    padding-top: 220px;
+    padding-top: 180px;
     height: 100%;
     overflow: scroll;
     list-style: none;
@@ -62,8 +63,8 @@ html, body {
 
 .me-name {
     font-weight: bold;
-    padding-top: 96px;
-    padding-bottom: 32px;
+    padding-top: 48px;
+    padding-bottom: 24px;
     font-size: 64px;
     z-index: 1;
 }

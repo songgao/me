@@ -55,39 +55,42 @@ Main.prototype.init = function() {
 };
 
 Main.prototype.feed_ready = function() {
-    $("#lifestream li").each(function(){
-        var element = $(this),
+
+    var append_time = function(element){
         date = new Date(element.data("time"));
-        element.append(' <abbr class="timeago" title="' + date.toISO8601() + '">' + date + "</abbr>");
-    });
-    $("#lifestream .timeago").timeago();
+        element.append(' | <a class="timeago" href="' + element.data('url') + '" title="' + date.toISO8601() + '">' + date + "</a>");
+    };
 
     $('li.lifestream-github').each(function() {
         var element = $(this);
+        append_time(element);
         element.wrapInner('<div class="lifestream-li-content"/>');
         element.append('<i class="fa fa-github fa-3x"></i>');
     });
 
     $('li.lifestream-twitter').each(function() {
         var element = $(this);
+        console.log(element);
+        append_time(element);
         element.wrapInner('<div class="lifestream-li-content"/>');
         element.append('<i class="fa fa-twitter fa-3x twitter"></i>');
     });
 
     $('li.lifestream-atom').each(function() {
         var element = $(this);
+        append_time(element);
         element.wrapInner('<div class="lifestream-li-content"/>');
         element.append('<i class="fa fa-rss fa-3x blog"></i>');
     });
 
     $('li.lifestream-stackoverflow').each(function() {
         var element = $(this);
+        append_time(element);
         element.wrapInner('<div class="lifestream-li-content"/>');
         element.append('<i class="fa fa-stack-overflow fa-3x stack-overflow"></i>');
     });
 
-    $('ul.lifestream').addClass('curl');
-    stroll.bind('ul.lifestream', { live: true } );
+    $("#lifestream .timeago").timeago();
 }
 
 $(window).load(function() {

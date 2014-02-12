@@ -52,6 +52,14 @@ Main.prototype.init = function() {
             }
         }
     });
+    
+    $('#btnGPGEmail').click(function() {
+        self.gpgEmail($(this));
+    });
+
+    if (window.location.hash && '#gpgModal' == window.location.hash) {
+        $('#gpgModal').modal('show');
+    }
 };
 
 Main.prototype.feed_ready = function() {
@@ -70,7 +78,6 @@ Main.prototype.feed_ready = function() {
 
     $('li.lifestream-twitter').each(function() {
         var element = $(this);
-        console.log(element);
         append_time(element);
         element.wrapInner('<div class="lifestream-li-content"/>');
         element.append('<i class="fa fa-twitter fa-3x twitter"></i>');
@@ -91,7 +98,20 @@ Main.prototype.feed_ready = function() {
     });
 
     $("#lifestream .timeago").timeago();
-}
+};
+
+Main.prototype.gpgEmail = function(btn) {
+    btn.button('loading');
+    $.get('./js/public_key', function(key) {
+        var mailto = "mailto:song@gao.io?subject=Sent%20From%20song.gao.io:&body=";
+        var publicKey = openpgp.key.readArmored(key);
+        var message = openpgp.encryptMessage(publicKey.keys, $('#textGPGEmail').val());
+        mailto += encodeURIComponent(message);
+        window.location.href = mailto;
+        btn.button('reset');
+        $('#gpgModal').modal('hide');
+    });
+};
 
 $(window).load(function() {
     var main = new Main();

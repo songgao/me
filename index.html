@@ -20,14 +20,20 @@
 
         <div class="container-fluid fill">
 
+            <!-- name / title for large screens -->
             <div class="row hidden-xs hidden-sm">
                 <div class="col-md-7 left-column me-name"><p class="text-right">Song </p></div>
                 <div class="col-md-5 right-column me-name"><p> Gao</p></div>
             </div>
+            <!-- name / title for small screens -->
             <div class="row">
                 <div class="col-xs-12 hidden-md hidden-lg xs-title"><h1>Song Gao</h1></div>
             </div>
+
+            <!-- main content -->
             <div class="row fill content">
+
+                <!-- contact info ul -->
                 <div class="col-md-5 col-md-push-7 right-column fill">
                     <div class="place-holder hidden-xs hidden-sm"></div>
                     <ul id="contact-list">
@@ -35,6 +41,7 @@
                         <li><i class="fa fa-comments fa-fw irc"></i> IRC: songgao (freenode)</li>
                         <li><a href="http://blog.song.gao.io"><i class="fa fa-rss fa-fw blog"></i> Blog</a></li>
                         <li><a href="mailto:song@gao.io"><i class="fa fa-envelope fa-fw gmail"></i> song@gao.io</a></li>
+                        <li><a href="http://pgp.mit.edu/pks/lookup?op=vindex&search=0xF18BE91509E1F508"><i class="fa fa-lock fa-fw gpg"></i> GPG: 09E1F508</a></li>
                         <li><a href="https://twitter.com/__songgao__"><i class="fa fa-twitter fa-fw twitter"></i> __songgao__</a></li>
                         <li><a href="https://www.linkedin.com/in/songgao"><i class="fa fa-linkedin fa-fw linkedin"></i> LinkedIn</a></li>
                         <li><a href="https://songgao.cupcake.is/profile"><i class="fa fa-arrow-circle-right fa-fw"></i> Tent (Cupcake)</a></li>
@@ -42,7 +49,13 @@
                         <li><a href="https://stackoverflow.com/users/218439/song-gao"><i class="fa fa-stack-overflow fa-fw stack-overflow"></i> StackOverflow</a></li>
                         <li><i class="fa fa-phone fa-fw"></i> +1(650)200-0915</li>
                     </ul>
+
+                    <p class="hidden-xs hidden-sm">Or message me securely using GPG from
+                    <a data-toggle="modal" data-target="#gpgModal" href="#gpgModal"> here </a>
+                    </p>
                 </div>
+
+                <!-- life stream -->
                 <div class="col-md-7 col-md-pull-5 left-column fill">
                     <div class="row fill">
                         <div class="col-md-11 col-md-push-1 fill" id="lifestream">
@@ -50,12 +63,37 @@
                     </div>
                 </div>
             </div>
+
         </div>
+
+
+        <!-- GPG message modal box --> 
+        <div class="modal fade" id="gpgModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" ><i class="fa fa-lock fa-fw gpg"></i> Send me an encrypted message</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>The message below will be encrypted with my <a href="http://www.gnupg.org/">GPG</a> <a href="http://pgp.mit.edu/pks/lookup?op=vindex&search=0xF18BE91509E1F508">public key</a>. This means I am the only person who can read it (assuming my private key is not compromised).</p>
+                        <hr />
+                        <textarea id="textGPGEmail" class="form-control" rows="8"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button id="btnGPGEmail" type="button" class="btn btn-primary"data-loading-text="Fetching GPG Key...">Email</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <script src="./lib/jquery-2.1.0.min.js"></script>
         <script src="./lib/bootstrap-3.1.0/js/bootstrap.min.js"></script>
         <script src="./lib/jquery.lifestream.min.js"></script>
         <script src="./lib/jquery.timeago.js"></script>
+        <script src="./lib/openpgp.min.js"></script>
         <script src="./js/main.js"></script>
         <script src="./js/analytics.js"></script>
     </body>

@@ -79,6 +79,7 @@ html, body {
     font-size: 24px;
     padding: 0px;
     margin: 0px;
+    margin-bottom: 32px;
 }
 
 #contact-list>li {
@@ -96,6 +97,7 @@ html, body {
 
 .blog { color: #4183c4; }
 .gmail { color: #dc4b39; }
+.gpg { color: #0093dd; }
 .irc { color: #73c27d; }
 .twitter { color: #00acee; }
 .instagram { color: #b4937f; }

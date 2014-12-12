@@ -1,0 +1,69 @@
+@import url(//fonts.googleapis.com/css?family=Droid+Sans+Mono);
+
+html,body,.full-height {
+  height: 100%;
+}
+
+#info {
+  overflow: scroll;
+  padding: 0px;
+}
+
+#info>div.header {
+  margin-top: 0px;
+  margin-bottom: 48px;
+  padding: 0px;
+  background-color: #455A64;
+  background-image: linear-gradient( to top, #37474F, #546E7A );
+  color: #ECEFF1;
+}
+
+#info>div.header>h1 {
+  display: inline-block;
+  padding: 0px;
+  margin-left: 64px;
+  margin-top: 80px;
+  font-size: 48px;
+}
+
+#info>div.header>div.footer {
+  width:100%;
+  text-align: right;
+  padding-top: 24px;
+  padding-bottom: 16px;
+  padding-right: 32px;
+  color: #B0BEC5;
+}
+
+.contact .blog { color: #00695C; }
+.contact .email { color: #9E9D24; }
+.contact .gpg { color: #C62828; }
+.contact .twitter { color: #42A5F5; }
+.contact .linkedin { color: #01579B; }
+.contact .instagram { color: #5D4037; }
+.contact .stack-overflow { color: #EF6C00; }
+
+ul.contact a { color: inherit; }
+ul.contact>li {
+  list-style: none;
+  font-size: 96px;
+  margin: 32px;
+  display: inline;
+}
+
+#terminal {
+  background-color: #222222;
+  background-image: linear-gradient( to top, #111111, #444444 );
+}
+
+.terminal {
+  border: rgba(0,0,0,0) solid 5px;
+  font-family: 'Droid Sans Mono';
+  font-size: 11px;
+  background-color: rgba(0,0,0,0) !important;
+}
+
+.reverse-video {
+  color: #000;
+  background: #f0f0f0;
+}

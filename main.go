@@ -51,7 +51,7 @@ func buildSSHAcceptor() (nush.Acceptor, error) {
 		return nil, err
 	}
 	config.AddHostKey(private)
-	l, err := nush.NewSSHListener(config, "localhost:22")
+	l, err := nush.NewSSHListener(config, ":22")
 	if err != nil {
 		return nil, err
 	}

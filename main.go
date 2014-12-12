@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crypto/tls"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -34,7 +35,9 @@ func buildHTTPAcceptor() (nush.Acceptor, error) {
 		assets = os.Args[1]
 	}
 	mux.Handle("/", http.FileServer(http.Dir(assets)))
-	go http.ListenAndServeTLS(":443", "./conf/bundle.pem", "./conf/ca.key", mux)
+	config := &tls.Config{MinVersion: tls.VersionTLS10}
+	server := &http.Server{Addr: ":443", Handler: mux, TLSConfig: config}
+	go server.ListenAndServeTLS("./conf/bundle.pem", "./conf/ca.key")
 	return acceptor, nil
 }
 

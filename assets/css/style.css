@@ -1,73 +1,81 @@
 @import url(//fonts.googleapis.com/css?family=Droid+Sans+Mono);
 
-html,body,.full-height {
-  height: 100%;
+body {
+    font: 24px Helvetica,Tahoma,Arial,Sans,Sans-serif;
+    font-weight: bold;
+    background-color: #2c2c2c;
+    color: #cccccc;
 }
 
-#info {
-  overflow: scroll;
-  padding: 0px;
+a {
+    color: #cccccc;
+    font-style: normal;
+    text-decoration: none;
 }
 
-#info>div.header {
-  margin-top: 0px;
-  margin-bottom: 48px;
-  padding: 0px;
-  background-color: #455A64;
-  background-image: linear-gradient( to top, #37474F, #546E7A );
-  color: #ECEFF1;
+
+h1 {
+    font-family: Helvetica,Tahoma,Arial,Sans,Sans-serif;
+    margin-left: 0px;
+    margin-bottom:16px;
+    float: left;
+    font-weight: bold;
+    color: black;
+    text-shadow: 0 2px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    transition: all .2s linear;
 }
 
-#info>div.header>h1 {
-  display: inline-block;
-  padding: 0px;
-  margin-left: 64px;
-  margin-top: 80px;
-  font-size: 48px;
+.clear {
+    clear: both;
 }
 
-#info>div.header>div.footer {
-  width:100%;
-  text-align: right;
-  padding-top: 24px;
-  padding-bottom: 16px;
-  padding-right: 32px;
-  color: #B0BEC5;
+#content {
+    width: 480px;
+    height: 480px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin: -240px 0px 0px -320px;
 }
 
-.contact .blog { color: #00695C; }
-.contact .email { color: #9E9D24; }
-.contact .gpg { color: #C62828; }
-.contact .twitter { color: #42A5F5; }
-.contact .linkedin { color: #01579B; }
-.contact .instagram { color: #5D4037; }
-.contact .stack-overflow { color: #EF6C00; }
-
-ul.contact a { color: inherit; }
-ul.contact>li {
-  list-style: none;
-  font-size: 96px;
-  margin: 32px;
-  display: inline;
+#the_list {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
 }
+
+#the_list>li {
+    list-style: none;
+    font-family: Monaco, Consolas, Courier New, monospace;
+    margin: 4px 0 4px 0;
+}
+
+.gmail { color: #dc4b39; }
+.irc { color: #73c27d; }
+.twitter { color: #00acee; }
+.linkedin { color: #449ac8; }
+.stack-overflow { color: #e08024; }
+.keybase { background-image: url('https://keybase.io/favicon.ico'); }
 
 #terminal {
-  background-color: #222222;
-  background-image: linear-gradient( to top, #111111, #444444 );
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  padding: 32px;
+  z-index: -100;
 }
 
 .terminal {
-  border: rgba(0,0,0,0) solid 5px;
   font-family: 'Droid Sans Mono';
   font-size: 11px;
-  background-color: rgba(0,0,0,0) !important;
+  background-color: transparent !important;
 }
 
-.reverse-video {
+.terminal .reverse-video {
   color: #000;
   background: #f0f0f0;
 }
-
-.fa-is-not-ad-twitter:before{content:"\f099"}
-.fa-is-not-ad-linkedin::before{content:"\f0e1"}
-.fa-is-not-ad-instagram:before{content:"\f16d"}

@@ -1,10 +1,11 @@
 package main
 
 import (
-	"crypto/tls"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/songgao/nush"
 	"golang.org/x/crypto/ssh"
@@ -13,31 +14,45 @@ import (
 func main() {
 	s, err := buildSSHAcceptor()
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
-	h, err := buildHTTPAcceptor()
+	mux := buildMux()
+	h, err := buildHTTPAcceptor(mux)
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
-	_ = h
+	nush.SetLoggerOutput(os.Stdout)
 	go nush.TerminalServer(nil).ListenAndServe([]nush.Acceptor{s, h})
-	go http.ListenAndServe(":80", http.RedirectHandler("https://song.gao.io/", http.StatusMovedPermanently))
+	log.Println("Ready")
 	select {}
 }
 
-func buildHTTPAcceptor() (nush.Acceptor, error) {
-	acceptor, mux, err := nush.NewHTTPListener()
-	if err != nil {
-		return nil, err
-	}
+func buildMux() *http.ServeMux {
 	assets := "./assets"
 	if len(os.Args) > 1 {
 		assets = os.Args[1]
 	}
+	mux := http.NewServeMux()
 	mux.Handle("/", http.FileServer(http.Dir(assets)))
-	config := &tls.Config{MinVersion: tls.VersionTLS10}
-	server := &http.Server{Addr: ":443", Handler: mux, TLSConfig: config}
-	go server.ListenAndServeTLS("./conf/bundle.pem", "./conf/ca.key")
+	return mux
+}
+
+func buildHTTPAcceptor(mux *http.ServeMux) (nush.Acceptor, error) {
+	acceptor, err := nush.NewHTTPListener(mux)
+	if err != nil {
+		return nil, err
+	}
+	go func() {
+		server := &http.Server{
+			Addr:         ":80",
+			Handler:      mux,
+			ReadTimeout:  32 * time.Second,
+			WriteTimeout: 32 * time.Second,
+		}
+		if err = server.ListenAndServe(); err != nil {
+			log.Fatal(err)
+		}
+	}()
 	return acceptor, nil
 }
 
